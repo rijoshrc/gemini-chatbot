@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useRef, useState } from "react";
 import Markdown from "react-markdown";
+import { BackgroundBeams } from "./BackgroundBeams";
 
 const API_KEY = "AIzaSyDFfVClZwBIFCxj1HZYll_HPE2LFEWwcjo";
 const genAI = new GoogleGenerativeAI(API_KEY);
@@ -38,8 +39,6 @@ const ChatBox = () => {
       const response = await result.response;
       const reply = response.text();
 
-      console.log(await chat.getHistory());
-
       addEntry(reply, "model");
       setLoading(false);
     } catch (e) {
@@ -56,13 +55,12 @@ const ChatBox = () => {
       id,
       sender,
     };
-
     setHistory((h: History[]) => [...h, newChat]);
   };
 
   return (
     <div className="flex flex-col h-screen p-4 bg-gray-100">
-      <div className="flex-1 overflow-y-auto">
+      <div className="z-10 flex-1 overflow-y-auto">
         {history
           ? history?.map((message: History) => (
               <div
@@ -93,7 +91,7 @@ const ChatBox = () => {
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex items-center mt-2">
+      <form onSubmit={handleSubmit} className="z-10 flex items-center mt-2">
         <input
           ref={inputRef}
           type="text"
@@ -102,6 +100,7 @@ const ChatBox = () => {
         />
         <button className="p-2 text-white bg-blue-500 rounded">Send</button>
       </form>
+      <BackgroundBeams />
     </div>
   );
 };
