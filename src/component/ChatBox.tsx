@@ -2,10 +2,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useRef, useState } from "react";
 import Markdown from "react-markdown";
 import { BackgroundBeams } from "./BackgroundBeams";
+import { API_KEY } from "../config/gemini";
 
-const API_KEY = "AIzaSyDFfVClZwBIFCxj1HZYll_HPE2LFEWwcjo";
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro-001" });
+
+console.log(import.meta.env.MODE);
 
 type History = {
   id: string;
