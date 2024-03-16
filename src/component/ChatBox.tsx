@@ -61,7 +61,7 @@ const ChatBox = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen p-4 bg-gray-100">
+    <div className="flex flex-col h-screen p-4 bg-neutral-950">
       <div className="z-10 flex-1 overflow-y-auto">
         {history
           ? history?.map((message: History) => (
